@@ -1,6 +1,17 @@
 // controllers/busController.js
 const Bus = require('../models/Bus');
 
+// Fetch all buses
+exports.getAllBuses = async (req, res) => {
+  console.log('GET /getAllBuses called');
+  try {
+    const buses = await Bus.find(); // Fetch all buses from the collection
+    res.status(200).json(buses);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+};
+
 exports.createBus = async (req, res) => {
   console.log('POST /createBus called');
   try {
