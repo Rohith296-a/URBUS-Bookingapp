@@ -13,10 +13,10 @@ exports.getAllBuses = async (req, res) => {
 };
 
 exports.createBus = async (req, res) => {
-  console.log('POST /createBus called');
+  console.log('POST /createBus called------>', req.body);
   try {
-    const { numberPlate, capacity, fares, toDestination, fromDestination, departureTime, reachTime, departureLocation, busName} = req.body;
-    const bus = new Bus({ numberPlate, capacity, fares, toDestination, fromDestination, departureTime, reachTime, departureLocation , busName });
+    const { numberPlate, capacity, fares, toDestination, fromDestination, departureTime, reachTime, departureLocation, busName, pickupPoints} = req.body;
+    const bus = new Bus({ numberPlate, capacity, fares, toDestination, fromDestination, departureTime, reachTime, departureLocation , busName, pickupPoints });
     await bus.save();
     res.status(201).json({bus, message : 'Bus Created Successfully'});
   } catch (error) {
